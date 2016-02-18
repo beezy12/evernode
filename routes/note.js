@@ -7,6 +7,8 @@ const router = express.Router();
 // const Note = require('../models/note');
 const note = require('../controllers/note');
 
+router.get('/notes', note.index);
+
 // this route will just serve up the form
 router.get('/notes/new', note.newNote);
 
@@ -14,6 +16,10 @@ router.get('/notes/new', note.newNote);
 // this is where we get the note from the database and show it on the page
 router.get('/notes/:id', note.show);
 
+// these two are for editing notes
+router.get('/notes/:id/edit', note.edit);
+
+router.put('/notes/:id', note.update);
 // listening for a delete request on the notes/:id route, and when it does fire the note.destroy
 // methods here have to be lowercase, but in HTML, HTTP verbs tend to be all caps.
 router.delete('/notes/:id', note.destroy);
@@ -21,9 +27,10 @@ router.delete('/notes/:id', note.destroy);
 // this is where we'll create a new note and save to the database
 router.post('/notes', note.create);
 
-router.get('/notes', note.index);
-
 
 module.exports = router;
+
+
+
 
 
