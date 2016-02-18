@@ -7,18 +7,17 @@ const Note = require('../models/note');
 
 module.exports = {
 	edit (req, res) {
-		Note.findById(req.params.id, (err, note) => {
-			console.log('****', note)
-			if(err) throw err;
-			res.render('new-note', {note: note});
-		})
+		res.render('new-note', {note: req.note});
 	},
 
+
+	// all of these .update and whatever are methods on the mongoose object. It's basically
+	// saying var note = new Note
 	update (req, res) {
-		Note.findByIdAndUpdate(req.params.id, req.body, (err, note) => {
+		req.note.update(req.body, (err) => {
 			if(err) throw err;
 
-			res.redirect(`/notes/${note._id}`);
+			res.redirect(`/notes/${req.note._id}`);
 		});
 	},
 
@@ -36,12 +35,12 @@ module.exports = {
 	},
 
 	show (req, res) {
-		Note.findById(req.params.id, (err, note) => {
+		Note.findById(req.params.id, (err) => {
 			if(err) throw err;
 
 			// we pass note as a second parameter here, which is a document in the db. by bringing it up when I render, I can now access it in my jade file.  h1= note.title   p= note.text
 			// get note id from terminal and paste it in the url
-			res.render('show-note', {note: note});
+			res.render('show-note', {note: req.note});
 
 		});
 	},
@@ -59,9 +58,9 @@ module.exports = {
 		});
 	},
 
-
+	// again .remove here is a mongoose method that goes to the database and deletes
 	destroy (req, res) {
-		Note.findByIdAndRemove(req.params.id, (err) => {
+		req.note.remove((err) => {
 			if(err) throw err;
 
 			res.redirect('/notes');
