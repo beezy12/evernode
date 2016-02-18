@@ -25,16 +25,35 @@ app.get('/notes/new', (req, res) => {
 	res.render('new-note');
 });
 
+/* IMPORTANT this has to be below notes/new because :id can be any word, if you go to the notes new, it assigns new to the :id part, so as the waterfall goes, it won't let you go to new if you had these in the wrong order */
+// this is where we
+app.get('/notes/:id', (req, res) => {
+	Note.findById(req.params.id, (err, note) => {
+		if(err) throw err;
+
+		// we pass note as a second parameter here, which is a document in the db. by bringing it up when I render, I can now access it in my jade file.  h1= note.title   p= note.text
+		// get note id from terminal and paste it in the url
+		res.render('show-note', {note: note});
+
+	});
+});
+
 // this is where we'll save to the database
 app.post('/notes', (req, res) => {
 	// console.log(req.body);
+
+	// this is where we save to the database mongoose schema. we assigned that schema to Note above
 	// create auto saves
 	Note.create(req.body, (err, note) => {
 		if(err) throw err;
 		console.log(note);
-	})
-	res.redirect('/');
+		// this will redirect to the show page for this note
+		res.redirect(`/notes/${note._id}`);
+	});
+
 });
+
+
 
 
 // evernode will be the db name
@@ -44,3 +63,4 @@ mongoose.connect('mongodb://localhost:27017/evernode', (err) => {
 		console.log(`evernode server running on port: ${port}`);
 	});
 });
+
