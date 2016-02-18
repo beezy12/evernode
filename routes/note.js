@@ -21,7 +21,7 @@ router.delete('/notes/:id', note.destroy);
 // this is where we'll create a new note and save to the database
 router.post('/notes', note.create);
 
-
+router.get('/notes', note.index);
 
 
 module.exports = router;
