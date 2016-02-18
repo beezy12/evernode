@@ -7,6 +7,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const note = require('./routes/note');
 const methodOverride = require('method-override');
+const logger = require('./lib/logger')
 
 
 app.set('view engine', 'jade');
@@ -20,6 +21,8 @@ app.use(methodOverride('_method'));
 app.get('/', (req, res) => {
 	res.send('server running');
 });
+
+app.use(logger);
 
 // this has to be below bodyParser, otherwise we would hit the route before the body gets parsed
 app.use(note);
