@@ -1,2 +1,5 @@
 h1= note.title
 p= note.text
+
+form(method='POST', action='/notes/#{note._id}?_method=DELETE')
+	input(type='submit', value="delete")

@@ -1,5 +1,7 @@
 'use strict';
 
+// controllers take data from the model, does the logic needed before it can be displayed to the screen
+
 const Note = require('../models/note');
 
 
@@ -32,4 +34,15 @@ module.exports.create = (req, res) => {
 }
 
 
-// controllers take data from the model, does the logic needed before it can be displayed to the screen
+module.exports.destroy = (req, res) => {
+	Note.findByIdAndRemove(req.params.id, (err) => {
+		if(err) throw err;
+
+		res.send('destroyyyyyyyy!!!!!');
+	});
+}
+
+
+
+
+

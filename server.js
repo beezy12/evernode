@@ -6,19 +6,23 @@ const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT || 3000;
 const note = require('./routes/note');
+const methodOverride = require('method-override');
 
 
 app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({
 	extended:false
 }));
-// this has to be below bodyParser, otherwise we would hit the route before the body gets parsed
-app.use(note);
+
+// this is going to look for a query parameter in a post
+app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => {
 	res.send('server running');
 });
 
+// this has to be below bodyParser, otherwise we would hit the route before the body gets parsed
+app.use(note);
 
 
 
