@@ -5,10 +5,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT || 3000;
-const Note = mongoose.model('Notes', mongoose.Schema({
-	title: String,
-	text: String
-}));
+const Note = require('./models/note');
+
 
 
 app.set('view engine', 'jade');
@@ -26,7 +24,7 @@ app.get('/notes/new', (req, res) => {
 });
 
 /* IMPORTANT this has to be below notes/new because :id can be any word, if you go to the notes new, it assigns new to the :id part, so as the waterfall goes, it won't let you go to new if you had these in the wrong order */
-// this is where we
+// this is where we get the note from the database and show it on the page
 app.get('/notes/:id', (req, res) => {
 	Note.findById(req.params.id, (err, note) => {
 		if(err) throw err;
