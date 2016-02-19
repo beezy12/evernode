@@ -2,7 +2,10 @@
 
 // controllers take data from the model, does the logic needed before it can be displayed to the screen
 
+// note model
 const Note = require('../models/note');
+
+// category model
 const Category = require('../models/category');
 
 
@@ -64,7 +67,7 @@ module.exports = {
 		// create auto saves
 		Note.create(req.body, (err, note) => {
 			if(err) throw err;
-			console.log(note);
+			// console.log(note);
 			// this will redirect to the show page for this note
 			res.redirect(`/notes/${note._id}`);
 		});

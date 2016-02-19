@@ -15,6 +15,7 @@ router.param('id', (req, res, next, id) => {
 		.populate('category')
 		.exec((err, note) => {
 			if(err) throw err;
+			// pretty sure those are mongoose methods above
 			//note is our data from the db
 			// attaching the note to the request object and then fire next
 			req.note = note;

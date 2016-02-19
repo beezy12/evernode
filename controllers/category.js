@@ -10,16 +10,11 @@ module.exports = {
 			res.render('cat-index', {cats: cats})
 		})
 	},
-	// show (req, res) {
-	// 	Category.findById(req.params.id, (err) => {
-	// 		if(err) throw err;
 
-	// 		res.render('cat-show', {cats: cats})
-	// 	})
-	// },
 	new (req, res) {
 		res.render('cat-new')
 	},
+
 	create (req, res) {
 		Category.create(req.body, (err) => {
 			if(err) throw err;
@@ -27,8 +22,11 @@ module.exports = {
 			res.redirect('/categories')
 		})
 	},
+
 	show (req, res) {
 		res.render('cat-show', {category: req.category})
+		console.log('just req.category', req.category)
+		console.log('req.category.notes', req.category.notes)
 	}
 };
 

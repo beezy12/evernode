@@ -15,7 +15,8 @@ app.use(bodyParser.urlencoded({
 	extended:false
 }));
 
-// this is going to look for a query parameter in a post
+// this is going to look for a query parameter in a post.
+// method-override lets us do things that you normally can't do with an http method (?), like delete. so we can use method-override to turn things like method="POST" into a delete.
 app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => {

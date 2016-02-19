@@ -10,6 +10,7 @@ const ctrl = require('../controllers/category')
 // didn't have to populate here because we are just getting the category ???
 router.param('id', (req, res, next, id) => {
 	Category.findById(id, (err, category) => {
+
 			if(err) throw err;
 
 			req.category = category;
@@ -19,6 +20,7 @@ router.param('id', (req, res, next, id) => {
 
 				// throw all notes on category object
 				req.category.notes = notes
+				console.log('req.category.notes', req.category.notes)
 				next();
 			})
 		});
@@ -43,7 +45,7 @@ router
 // router.get('/categories/new', ctrl.new)
 
 
-
-
 module.exports = router;
+
+
 
