@@ -10,6 +10,13 @@ module.exports = mongoose.model('Notes',
 	mongoose.Schema({
 		title: String,
 		text: String,
-		category: {type: Number, ref: 'Category'}
-}));
+		category: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Cats'
+		}
+	})
+);
 
+
+
+// we only had to have one match up here using category to match to the category model

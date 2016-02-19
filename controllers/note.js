@@ -58,7 +58,7 @@ module.exports = {
 	},
 
 	create (req, res) {
-		console.log('creating note', req.body);
+		//console.log('creating note', req.body);
 
 		// this is where we save to the database mongoose schema. we assigned that schema to Note above
 		// create auto saves

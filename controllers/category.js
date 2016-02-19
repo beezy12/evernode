@@ -24,8 +24,11 @@ module.exports = {
 		Category.create(req.body, (err) => {
 			if(err) throw err;
 
-			res.redirect('/categori')
+			res.redirect('/categories')
 		})
+	},
+	show (req, res) {
+		res.render('cat-show', {category: req.category})
 	}
 };
 

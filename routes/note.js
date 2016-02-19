@@ -10,14 +10,17 @@ const note = require('../controllers/note');
 
 // look at express api docs for router.param
 router.param('id', (req, res, next, id) => {
-	Note.findById(id, (err, note) => {
-		if(err) throw err;
-		//note is our data from the db
-		// attaching the note to the request object and then fire next
-		req.note = note;
-		//next says to move on down the waterfall
-		next();
-	});
+	Note
+		.findById(id)
+		.populate('category')
+		.exec((err, note) => {
+			if(err) throw err;
+			//note is our data from the db
+			// attaching the note to the request object and then fire next
+			req.note = note;
+			//next says to move on down the waterfall
+			next();
+		});
 });
 
 router.get('/notes', note.index);
