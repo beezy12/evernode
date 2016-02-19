@@ -1,0 +1,11 @@
+h1 new cat page
+
+form(method="POST", action="/categories")
+		.input-group
+			label(for='name')
+			input#name(type='text', name='name', value='')
+		.input-group
+			label(for='desc') Description
+			input#desc(type='text', name='description')
+		.input-group
+			input(type='submit', value='Save Category')

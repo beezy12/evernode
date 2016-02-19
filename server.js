@@ -5,10 +5,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT || 3000;
-const note = require('./routes/note');
 const methodOverride = require('method-override');
 const logger = require('./lib/logger')
-
+const note = require('./routes/note');
+const category = require('./routes/category')
 
 app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({
@@ -26,6 +26,7 @@ app.use(logger);
 
 // this has to be below bodyParser, otherwise we would hit the route before the body gets parsed
 app.use(note);
+app.use(category);
 
 
 

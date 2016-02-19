@@ -3,11 +3,19 @@
 // controllers take data from the model, does the logic needed before it can be displayed to the screen
 
 const Note = require('../models/note');
+const Category = require('../models/category');
 
 
 module.exports = {
 	edit (req, res) {
-		res.render('new-note', {note: req.note});
+		Category.find({}, (err, categories) => {
+			if(err) throw err;
+
+			res.render('new-note', {
+				note: req.note,
+				categories: categories
+			});
+		});
 	},
 
 
@@ -28,10 +36,14 @@ module.exports = {
 		});
 	},
 
-
-
 	newNote (req, res) {
-		res.render('new-note');
+		Category.find({}, (err, categories) => {
+			if(err) throw err;
+
+			res.render('new-note', {
+				categories: categories
+			});
+		})
 	},
 
 	show (req, res) {
@@ -67,7 +79,9 @@ module.exports = {
 		});
 	}
 
-}
+};
+
+
 
 
 
