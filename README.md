@@ -1,5 +1,4 @@
 # evernode
 
 
-
-be sure to check out the deleting branch for proper delete functionality. master doesn't have this functionality yet. logging branch is the final branch where we added lots of es6 features.
+A deep project we worked on with Scott. A note taking app, that allows users to add notes to a database with an attached category, delete, and edit notes.

@@ -25,8 +25,8 @@ module.exports = {
 
 	show (req, res) {
 		res.render('cat-show', {category: req.category})
-		console.log('just req.category', req.category)
-		console.log('req.category.notes', req.category.notes)
+		// console.log('just req.category', req.category)
+		// console.log('req.category.notes', req.category.notes)
 	}
 };
 

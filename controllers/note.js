@@ -10,6 +10,8 @@ const Category = require('../models/category');
 
 
 module.exports = {
+
+
 	edit (req, res) {
 		Category.find({}, (err, categories) => {
 			if(err) throw err;
@@ -63,8 +65,7 @@ module.exports = {
 	create (req, res) {
 		//console.log('creating note', req.body);
 
-		// this is where we save to the database mongoose schema. we assigned that schema to Note above
-		// create auto saves
+		// this is where we save to the database mongoose schema. we assigned that schema to the variable Note above. create auto saves
 		Note.create(req.body, (err, note) => {
 			if(err) throw err;
 			// console.log(note);

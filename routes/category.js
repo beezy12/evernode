@@ -20,7 +20,7 @@ router.param('id', (req, res, next, id) => {
 
 				// throw all notes on category object
 				req.category.notes = notes
-				console.log('req.category.notes', req.category.notes)
+				// console.log('req.category.notes', req.category.notes)
 				next();
 			})
 		});
